@@ -1,0 +1,11 @@
+<div class="button-location">
+    <button (click)="changeInput()">ngOnChanges</button>
+    <button (click)="changeIsTrue()">ngOnInit</button>
+    <button (click)="changeCont()">ngDoCheck</button>
+    <button (click)="changeIsTrue()">ngAfterContentInit</button>
+    <button (click)="changeStr()">ngAfterContentChecked</button>
+    <button (click)="changeIsTrue()">ngAfterViewInit</button>
+    <button (click)="changeCont()">ngAfterViewChecked</button>
+    
+    <app-child *ngIf="isTrue" [data]="value"></app-child>
+</div>
