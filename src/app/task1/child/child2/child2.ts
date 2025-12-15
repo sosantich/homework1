@@ -1,41 +1,42 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { App } from '../../../app';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-child2',
-  imports: [],
-  template:`
+  template: `
     <p>Child2</p>
-    <input #inputRef placeholder="Введите текст">
-    <button (click)="validate()">Отправить</button>
+    <button (click)="validate()">Проверить</button>
   `,
-  styleUrl: './child2.scss',
 })
 export class Child2 {
   @Input() childText = '';
   @Output() childTextChange = new EventEmitter<string>();
 
-  @ViewChild('inputRef')
-  inputRef!: ElementRef;
+  bannedWords = ['егор', 'туз', 'юла'];
 
-  banWord = ['егор', 'туз', 'юла'];
-  validate(){
-    const text = this.inputRef.nativeElement.value;
+  validate() {
+    this.childTextChange.emit('');
 
-    if (text.length > 7){
-      alert('Слишком длинное слово (не должно превышать 7)');
+    const text = this.childText;
+
+    if (!text) {
+      alert('Пустой текст!');
       return;
     }
 
-    for (let word of this.banWord){
-      if (text.includes(word)){
-        alert(`Вы используете запрещенные слова, а именно: ${word}`);
+    if (text.length > 7) {
+      alert('Слишком длинное слово (не должно превышать 7 символов)');
+      return;
+    }
+
+    for (let word of this.bannedWords) {
+      if (text.toLowerCase().includes(word)) {
+        alert(`Запрещенное слово: ${word}`);
         return;
       }
     }
 
-    if (/[a-zA-Z]/.test(text)){
-      alert('Английский язык запрещен');
+    if (/[a-zA-Z]/.test(text)) {
+      alert('Английский язык запрещён');
       return;
     }
 

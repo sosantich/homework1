@@ -5,12 +5,16 @@ import { Child1 } from '../../child/child1/child1';
   selector: 'app-parent1',
   imports: [Child1],
   template: `
-  <p>Parent</p>
-  <app-child1 [childText]="parentText" (childTextChange)="parentText = $event"></app-child1>
-  <p>Результат родителя: {{parentText}}</p>
+    <p>Parent1</p>
+    <input placeholder="Введите текст" (input)="parentText = $event.target.value">
+    <p>Результат родителя: {{result}}</p>
+    <app-child1
+      [childText]="parentText"
+      (childTextChange)="result = $event">
+    </app-child1>
   `,
-  styleUrl: './parent1.scss',
 })
 export class Parent1 {
   parentText = '';
+  result = '';
 }
