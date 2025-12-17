@@ -1,16 +1,24 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-child3',
-  imports: [FormsModule],
   template: `
     <p>Child3</p>
-    <input [(ngModel)]="childText">
+    <button (click)="changeTextToUpperCase()">В верхний регистр</button>
+    <button (click)="changeTextToLowerCase()">В нижний регистр</button>
   `,
-  styleUrl: './child3.scss',
 })
 export class Child3 {
   @Input() childText = '';
   @Output() childTextChange = new EventEmitter<string>();
+
+  changeTextToUpperCase() {
+    let text = this.childText.replace(/^Огромный /i, '').replace(/^Маленький /i, '');
+    this.childTextChange.emit('Огромный ' + text.toUpperCase());
+  }
+
+  changeTextToLowerCase() {
+    let text = this.childText.replace(/^Огромный /i, '').replace(/^Маленький /i, '');
+    this.childTextChange.emit('Маленький ' + text.toLowerCase());
+  }
 }

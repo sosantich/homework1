@@ -1,45 +1,65 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-child2',
+  imports: [NgIf],
   template: `
+  <br>
     <p>Child2</p>
-    <button (click)="validate()">Проверить</button>
+    <p *ngIf="error" style="color: red;">{{error}}</p>
   `,
 })
 export class Child2 {
-  @Input() childText = '';
+  private _childText = '';
+
+  @Input() 
+  set childText(value: string) {
+    this._childText = value;
+    this.validate();
+  }
+
+  get childText(): string {
+    return this._childText;
+  }
+
   @Output() childTextChange = new EventEmitter<string>();
 
-  bannedWords = ['егор', 'туз', 'юла'];
+  private _bannedWords = ['егор', 'туз', 'юла'];
+  public error = '';
 
   validate() {
+    this.error = '';
     this.childTextChange.emit('');
 
-    const text = this.childText;
+    const text = this.childText.trim();
 
     if (!text) {
-      alert('Пустой текст!');
+      this.setError('Пустой текст!');
       return;
     }
 
-    if (text.length > 7) {
-      alert('Слишком длинное слово (не должно превышать 7 символов)');
+    if (text.length > 12) {
+      this.setError('Слишком длинное слово (не должно превышать 12 символов)');
       return;
     }
 
-    for (let word of this.bannedWords) {
+    for (let word of this._bannedWords) {
       if (text.toLowerCase().includes(word)) {
-        alert(`Запрещенное слово: ${word}`);
+        this.setError(`Запрещенное слово: ${word}`);
         return;
       }
     }
 
     if (/[a-zA-Z]/.test(text)) {
-      alert('Английский язык запрещён');
+      this.setError('Английский язык запрещён');
       return;
     }
 
     this.childTextChange.emit(text);
+  }
+
+  private setError(message: string) {
+    this.error = message;
   }
 }

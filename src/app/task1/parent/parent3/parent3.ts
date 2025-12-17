@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
   template: `
     <p>Parent3</p>
     <input [(ngModel)]="parentText" placeholder="Введите текст">
+    <br><br>
+    <input [(ngModel)]="parentText">
     <app-child3 [(childText)]="parentText"></app-child3>
   `,
   styleUrl: './parent3.scss',
