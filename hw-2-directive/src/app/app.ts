@@ -1,12 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { If } from "./if-directive";
+import { For } from './for-directive';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [If, For],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('hw-2-directive');
+  public toggler: boolean = true;
+  items = ['а', 'б', 'в'];
+
 }
