@@ -1,9 +1,30 @@
 <button (click)="toggler=!toggler">Кнопка</button>
 <p>Первый параграф</p>
 <p *appIf="toggler">Второй параграф</p>
-
+<hr>
 <ul>
   <li *appFor="items; let item; let i = index">
     {{i}} - {{item}}
   </li>
 </ul>
+<hr>
+<div [appSwitch]="status">
+  <div>
+    <button (click)="status='loading'">loading</button>
+    <button (click)="status='success'">success</button>
+    <button (click)="status='error'">error</button>
+  </div>
+  <p *appCase="'loading'">Загрузка</p>
+  <p *appCase="'success'">Успешно</p>
+  <p *appCase="'error'">Ошибка</p>
+  <p *appDefault>Неизвестный статус</p>
+</div>
+<hr>
+<div [appClass]="'highlight'">Один класс</div>
+<div [appClass]="['red', 'bold']">Несколько классов</div>
+<hr>
+<div [appStyle]="{ color: 'red' }">Красный текст</div>
+<div [appStyle]="{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }">
+  Выделенный жирный текст
+</div>
+
