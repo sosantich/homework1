@@ -1,13 +1,11 @@
-.red {
-  color: red;
-}
-
-.bold {
-  font-weight: bold;
-}
-
 .highlight {
   background-color: green;
   color: white;
   padding: 5px;
+  margin-top: 10px;
+}
+
+.redBold {
+  background-color: red;
+  font-weight: bold;
 }

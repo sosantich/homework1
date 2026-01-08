@@ -8,12 +8,18 @@ export class Class {
     private el: ElementRef, 
     private renderer: Renderer2
   ) {}
-  @Input() set appClass(classes: string | string[]) {
+  @Input() set appClass(classes: string | string[] | { [k: string]: boolean }) {
     if (!classes) return;
-    if (typeof classes === 'string') {
-      this.renderer.addClass(this.el.nativeElement, classes);
-    } else {
-      classes.forEach(c => this.renderer.addClass(this.el.nativeElement, c));
+    if (typeof classes === 'string') { 
+      this.renderer.addClass(this.el.nativeElement, classes); 
+      return; 
     }
+    if (Array.isArray(classes)) { 
+      classes.forEach(c => this.renderer.addClass(this.el.nativeElement, c)); 
+      return; 
+    }
+    Object.keys(classes).forEach(k => classes[k] 
+      ? this.renderer.addClass(this.el.nativeElement, k) 
+      : this.renderer.removeClass(this.el.nativeElement, k));
   }
 }

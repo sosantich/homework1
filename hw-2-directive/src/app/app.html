@@ -20,11 +20,10 @@
   <p *appDefault>Неизвестный статус</p>
 </div>
 <hr>
-<div [appClass]="'highlight'">Один класс</div>
-<div [appClass]="['red', 'bold']">Несколько классов</div>
+<button (click)="isRedBold=!isRedBold">Кнопка</button>
+<div [appClass]="{highlight:isHighlight, redBold:isRedBold}">Какой-то текст</div>
 <hr>
 <div [appStyle]="{ color: 'red' }">Красный текст</div>
 <div [appStyle]="{ color: 'white', backgroundColor: 'black', fontWeight: 'bold' }">
   Выделенный жирный текст
 </div>
-

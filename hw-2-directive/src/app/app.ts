@@ -6,6 +6,7 @@ import { Case } from './case-directive';
 import { Default } from './default-directive';
 import { Class } from './class-directive';
 import { Style } from './style-directive';
+import { NgClass } from "../../node_modules/@angular/common/types/_common_module-chunk";
 
 @Component({
   selector: 'app-root',
@@ -17,4 +18,6 @@ export class App {
   public toggler: boolean = true;
   public items = ['а', 'б', 'в'];
   public status = '';
+  public isHighlight: boolean = true;
+  public isRedBold: boolean = false;
 }
