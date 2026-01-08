@@ -16,5 +16,5 @@ import { Style } from './style-directive';
 export class App {
   public toggler: boolean = true;
   public items = ['а', 'б', 'в'];
-  public status = 'loading';
+  public status = '';
 }
