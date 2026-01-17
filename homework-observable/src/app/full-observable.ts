@@ -36,9 +36,8 @@ export class FullObservable implements OnInit, OnDestroy {
     });
 
     this.subscription = observable.subscribe({
-      next: (v) => {
-        console.log(v);
-        this.value = v;
+      next: (val) => {
+        console.log(val);
       },
       error: (err) => {
         console.error(err.message);

@@ -19,21 +19,13 @@ export class Card2Fetch implements OnInit, OnDestroy {
         .then(response => response.json())
         .then(data => {
           observer.next(data);
-          observer.complete();
         })
-        .catch(error => observer.error(error));
     });
 
     this.subscription = observable.subscribe({
       next: (data) => {
         this.dog = data;
       },
-      error: (err) => {
-        console.error('Error:', err);
-      },
-      complete: () => {
-        console.log('Observable completed');
-      }
     });
   }
 

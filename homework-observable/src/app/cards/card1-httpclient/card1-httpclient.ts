@@ -13,14 +13,15 @@ import { Subscription } from 'rxjs';
 
 export class Card1Httpclient implements OnInit, OnDestroy {
   character: any = {};
-  private subscription: Subscription | undefined = undefined;
+  private subscription: Subscription | null = null;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {
 }
 
 
 ngOnInit() {
-  this.subscription = this.http.get('https://rickandmortyapi.com/api/character/1').subscribe({ next: (response) => {
+  this.subscription = this.http.get('https://rickandmortyapi.com/api/character/1').subscribe({ 
+    next: (response) => {
         this.character = response;
         this.cdr.detectChanges();
       },
