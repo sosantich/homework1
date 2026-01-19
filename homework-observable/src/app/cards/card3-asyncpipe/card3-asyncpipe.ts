@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RandomUserResponse } from '../../models/random-user.model';
+import { RandomUserService } from '../../services/random-user.service';
 
 @Component({
   selector: 'app-card3-asyncpipe',
@@ -11,9 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class Card3Asyncpipe {
 
-  response: Observable<any>;
+  public response: Observable<RandomUserResponse>;
 
-  constructor(private http: HttpClient) {
-    this.response = this.http.get('https://randomuser.me/api/');
+  constructor(private randomUserService: RandomUserService) {
+    this.response = this.randomUserService.getRandomUser();
   }
 }

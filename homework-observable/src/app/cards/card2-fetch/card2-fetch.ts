@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { Dog } from '../../models/dog.model';
+import { DogService } from '../../services/dog.service';
 
 @Component({
   selector: 'app-card2-fetch',
@@ -10,26 +12,20 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class Card2Fetch implements OnInit, OnDestroy {
 
-  dog: any = {};
-  private subscription!: Subscription;
+  public dog?: Dog;
+  private subscription?: Subscription | null = null;
 
-  ngOnInit() {
-    const observable = new Observable<any>((observer) => {
-      fetch('https://dog.ceo/api/breeds/image/random')
-        .then(response => response.json())
-        .then(data => {
-          observer.next(data);
-        })
-    });
+  constructor(private dogService: DogService) {}
 
-    this.subscription = observable.subscribe({
-      next: (data) => {
-        this.dog = data;
-      },
-    });
+  ngOnInit(): void {
+    this.subscription = this.dogService.getRandomDog().subscribe(dog => {
+        this.dog = dog;
+      });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

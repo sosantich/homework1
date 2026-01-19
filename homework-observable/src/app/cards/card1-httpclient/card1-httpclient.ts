@@ -1,34 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Character } from '../../models/character.model';
+import { CharacterService } from '../../services/character.service';
 
 @Component({
   selector: 'app-card1-httpclient',
   templateUrl: './card1-httpclient.html',
-  imports: [],
   styleUrls: ['./card1-httpclient.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class Card1Httpclient implements OnInit, OnDestroy {
-  character: any = {};
-  private subscription: Subscription | null = null;
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {
-}
+  public character?: Character;
+  private subscription?: Subscription | null = null;
 
+  constructor(private characterService: CharacterService) {}
 
-ngOnInit() {
-  this.subscription = this.http.get('https://rickandmortyapi.com/api/character/1').subscribe({ 
-    next: (response) => {
-        this.character = response;
-        this.cdr.detectChanges();
-      },
-    });
-}
+  ngOnInit(): void {
+    this.subscription = this.characterService.getCharacter(1).subscribe(character => {
+        this.character = character;
+      });
+  }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }

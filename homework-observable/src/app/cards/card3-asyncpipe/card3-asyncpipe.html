@@ -1,15 +1,23 @@
-<div class="card">
-  <img class="avatar" [src]="(response | async)?.results[0]?.picture?.large"/>
+@let response = (this.response | async)?.results?.[0];
+@if (response) {
+  <div class="card">
+  <img class="avatar" [src]="response.picture.large"/>
   <div class="info">
     <h2>User Info</h2>
     <p>
-      <b>Name:</b> {{ (response | async)?.results[0]?.name?.first }} {{ (response | async)?.results[0]?.name?.last }}
+      <b>Name:</b> {{ response.name.first }} {{ response.name.last }}
     </p>
-    <p>
-      <b>Email:</b> {{ (response | async)?.results[0]?.email }}
-    </p>
-    <p>
-      <b>Location:</b> {{ (response | async)?.results[0]?.location?.city }}, {{ (response | async)?.results[0]?.location?.country }}
-    </p>
+      @if (response.email) {
+        <p>
+          <b>Email:</b> {{ response.email }}
+        </p> 
+      }
+      @if (response.location) {
+        <p>
+          <b>Location:</b> {{ response.location.city }}, {{ response.location.country }}
+        </p>  
+      }
   </div>
 </div>
+}
+

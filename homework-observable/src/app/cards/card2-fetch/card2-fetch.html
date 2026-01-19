@@ -1,4 +1,5 @@
-<div class="card">
+@if (dog) {
+  <div class="card">
   <img class="avatar" [src]="dog.message"/>
   <div class="info">
     <h2>Random Dog</h2>
@@ -8,3 +9,5 @@
     </p>
   </div>
 </div>
+}
+
