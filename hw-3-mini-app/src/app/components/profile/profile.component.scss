@@ -26,3 +26,12 @@
   font-size: 20px;
   margin: 12px 0;
 }
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.edit-button {
+  margin-top: 90%;
+  display: flex;
+  justify-content: center;
+}
