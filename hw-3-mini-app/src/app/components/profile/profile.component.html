@@ -1,7 +1,7 @@
-@let user = (this.user$ | async)?.results?.[0];
-@if (user) {
-  <div class="profile-card">
-    <div class="card">
+@let user = (this.user$ | async)?.results?.[0]?.user;
+<div class="profile-card">
+  <div class="card">
+    @if (user) {
       <img class="avatar" [src]="user.picture.large" alt="User Avatar" />
       <div class="info">
         <h2>{{ user.name.first }}'s Profile</h2>
@@ -12,18 +12,15 @@
           <p><b>Email:</b> {{ user.email }}</p>
         }
         @if (user.phone) {
-          <p><b>Phone:</b> {{ user.phone }}</p>
+          <p><b>Phone:</b> {{ user.phone  | number }}</p>
         }
         @if (user.location) {
-          <p><b>Location:</b> {{ user.location.city }}, {{ user.location.country }}</p>
-        }
-        @if (user.dob.age) {
-          <p><b>Age:</b> {{ user.dob.age | ageIncrement }}</p>
+          <p><b>Location:</b> {{ user.location.state | titlecase}}, {{ user.location.city | titlecase}}</p>
         }
         <div class="edit-button">
           <button mat-raised-button (click)="edit(user)">Редактировать</button>
         </div>
       </div>
-    </div>
+    }
   </div>
-}
+</div>
