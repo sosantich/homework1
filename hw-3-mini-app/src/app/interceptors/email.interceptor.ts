@@ -10,11 +10,9 @@ export function emailInterceptor(
     map((event: HttpEvent<unknown>) => {    
       if (event.type === HttpEventType.Response) {
         const body = event.body as User;
-        if (body?.results) {
           body.results = body.results.map((r: UserResult) => ({
             user: { ...r.user, email: `email.${r.user.email}` }
           }));
-        }
       }
       return event;
     }),
