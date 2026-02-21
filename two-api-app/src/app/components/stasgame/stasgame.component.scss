@@ -11,6 +11,7 @@
 .game-title {
   font-size: 48px;
   margin-bottom: 50px;
+  color: #2F4F4F;
 }
 
 .avatar {
@@ -23,6 +24,7 @@
 .avatar p {
     font-weight: 700;
     font-size: 32px;
+    color: #2F4F4F;
 }
 
 .avatar img {
@@ -61,13 +63,10 @@
 
 .user-turn button, .comp-turn button {
   padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
   background: #3b82f6;
+  border: none;
   color: #fff;
 }
-
-
 
 .user-turn button:hover, .comp-turn button:hover {
   background: #2563eb;

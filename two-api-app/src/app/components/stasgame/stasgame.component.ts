@@ -17,10 +17,7 @@ export class StasGameComponent {
   public compTurn = false;
   private finished = false;
 
-  constructor(
-    private router: Router,
-    private game: StasGameService,
-  ) {}
+  constructor(private router: Router, private game: StasGameService) {}
 
   add(text: string) {
     this.log.push({ id: ++this.i, text });
