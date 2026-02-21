@@ -1,0 +1,91 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f0f4f8;
+  min-height: 100vh;
+}
+
+.game-title {
+  font-size: 48px;
+  margin-bottom: 50px;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar p {
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.avatar img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.game-panel {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-turn, .comp-turn {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-turn input {
+  width: 120px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.user-turn button, .comp-turn button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background: #3b82f6;
+  color: #fff;
+}
+
+
+
+.user-turn button:hover, .comp-turn button:hover {
+  background: #2563eb;
+}
+
+.log {
+  max-height: 450px;
+  overflow-y: auto;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.log-item {
+  background: #e0f2fe;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
